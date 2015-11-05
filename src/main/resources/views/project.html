@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+	    <title>Trugrade - Project: <span th:text="${project.name}"/></title>
+	</head>
+
+<body>
+	<h1>Project <span th:text="${project.name}"/></h1>
+	
+	<h2>Test Groups</h2>
+	
+	<table th:if="null != ${project.testGroups}">
+		<tr>
+			<th>ID</th>
+			<th>Test Group Name</th>
+			<th>Test Group Description</th>
+		</tr>
+		<tr th:each="testGroup : ${project.testGroups}">
+			<td>
+				<a th:text="${testGroup.id}" th:href="@{'/' + ${project.name} + '/testgroups/' + ${testGroup.name}}"></a>
+			</td>
+			<td>
+				<a th:text="${testGroup.name}" th:href="@{'/' + ${project.name} + '/testgroups/' + ${testGroup.name}}"></a>
+			</td>
+			<td th:text="${testGroup.description}"></td>
+		</tr>
+	</table>
+	
+	<h2>Test Cases</h2>
+	<table th:if="null != ${project.testCases}">
+		<tr>
+			<th>ID</th>
+			<th>Test Case Name</th>
+			<th>Test Case Description</th>
+		</tr>
+		<tr th:each="testCase : ${project.testCases}">
+			<td>
+				<a th:text="${testCase.id}" th:href="@{'/' + ${project.name} + '/testcases/' + ${testCase.id}}"></a>
+			</td>
+			<td>
+				<a th:text="${testCase.name}" th:href="@{'/' + ${project.name} + '/testcases/' + ${testCase.id}}"></a>
+			</td>
+			<td th:text="${testCase.description}"></td>
+		</tr>
+	</table>
+	
+</body>
+
+</html>

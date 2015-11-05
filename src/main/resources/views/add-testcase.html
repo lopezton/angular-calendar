@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+	    <title>Trugrade - New Test Case</title>
+	</head>
+
+<body>
+	<form th:action="@{'/' + ${project.name} + '/testcases/add'}" method="post">
+		<div class="row">
+			<label class="form-control" for="name">Name: </label>
+			<input class="form-control" name="name" type="text" placeholder="Enter a name" />
+		</div>
+		<div class="row">
+			<label class="form-control" for="description">Description: </label>
+			<input class="form-control" name="description" type="text" placeholder="Enter a description" />
+		</div>
+		<div class="row">
+			<input class="form-control" type="submit" value="Add" />
+		</div>
+	</form>
+</body>
+
+</html>

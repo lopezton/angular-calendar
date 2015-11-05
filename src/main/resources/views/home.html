@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+	    <title>Trugrade - Home</title>
+	</head>
+
+<body>
+	<h1>Projects</h1>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Project Name</th>
+			<th>Project Description</th>
+		</tr>
+		<tr th:each="project : ${projects}">
+			<td>
+				<a th:text="${project.id}" th:href="@{'/' + ${project.name}}"></a>
+			</td>
+			<td>
+				<a th:text="${project.name}" th:href="@{'/' + ${project.name}}"></a>
+			</td>
+			<td th:text="${project.description}"></td>
+		</tr>
+	</table>
+</body>
+
+</html>
