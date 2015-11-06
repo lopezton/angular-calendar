@@ -1,29 +1,71 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous"/>
 
-<html xmlns:th="http://www.thymeleaf.org">
-
-	<head>
-	    <title>Trugrade - Home</title>
-	</head>
-
-<body>
-	<h1>Projects</h1>
-	<table>
-		<tr>
-			<th>ID</th>
-			<th>Project Name</th>
-			<th>Project Description</th>
-		</tr>
-		<tr th:each="project : ${projects}">
-			<td>
-				<a th:text="${project.id}" th:href="@{'/' + ${project.name}}"></a>
-			</td>
-			<td>
-				<a th:text="${project.name}" th:href="@{'/' + ${project.name}}"></a>
-			</td>
-			<td th:text="${project.description}"></td>
-		</tr>
-	</table>
-</body>
-
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous"/>
+	
+	<link rel="stylesheet" href="/resources/css/calendar.css"/>
+</head>
+	<body data-ng-app="calendarApp">
+	
+    	<div class="responsive-calendar" data-ng-controller="calendarAppCtrl">
+          <div class="controls">
+            <a class="btn btn-primary pull-left">Prev</a>
+            <h4><span class="ng-binding">{{calendar.currentMonth}}</span> <span class="ng-binding">{{calendar.currentYear}}</span></h4>
+            <a class="btn btn-primary pull-right">Next</a>
+          </div>
+          <hr/>
+          <div class="day-headers">
+            <div data-ng-repeat="day in constant.days" class="day header">
+              {{day}}
+            </div>
+          </div>
+          <div class="days">
+          
+		    <div class="day former-day" data-ng-repeat="day in calendar.formerMonthDays">
+			  <span class="day-number">{{day.number}}</span>
+			  <div class="events">
+			    <ul>
+			      <li data-ng-repeat="event in day.events">
+			   	    <a title="{{event.description}}">{{event.time}} - {{event.title}}</a>
+			      </li>
+                </ul>
+			  </div>
+		    </div>
+		  
+		    <div class="day" data-ng-repeat="day in calendar.days">
+			  <span class="day-number">{{day.number}}</span>
+			  <div class="events">
+			    <ul>
+			      <li data-ng-repeat="event in day.events">
+			   	    <a title="{{event.description}}">{{event.time}} - {{event.title}}</a>
+			      </li>
+                </ul>
+			  </div>
+		    </div>
+		  
+		    <div class="day subsequent-day" data-ng-repeat="day in calendar.subsequentMonthDays">
+		  	  <span class="day-number">{{day.number}}</span>
+			  <div class="events">
+			    <ul>
+			      <li data-ng-repeat="event in day.events">
+			   	    <a title="{{event.description}}">{{event.time}} - {{event.title}}</a>
+			      </li>
+                </ul>
+			  </div>
+		    </div>
+		  
+          </div>
+    	</div>
+	
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+	  <script src="/resources/js/app.js"></script>
+	</body>
 </html>
